@@ -1,0 +1,27 @@
+# systemd-юнит для приложения. Установка:
+#   sudo cp deploy/tracker.service /etc/systemd/system/tracker.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now tracker
+[Unit]
+Description=Workout Tracker
+After=network.target
+
+[Service]
+Type=simple
+User=tracker
+Group=tracker
+WorkingDirectory=/opt/tracker
+EnvironmentFile=/etc/tracker.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+RestartSec=3
+
+# Ограничения: приложению нужен доступ на запись только к данным.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/tracker
+
+[Install]
+WantedBy=multi-user.target

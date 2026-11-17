@@ -50,3 +50,4 @@ next-env.d.ts
 /playwright-report
 !.env.example
 /uploads
+/.e2e-outbox

@@ -1,0 +1,7 @@
+# Обратный прокси с автоматическим HTTPS (Let's Encrypt).
+# Замените домен и положите файл в /etc/caddy/Caddyfile.
+# Caddy сам передаёт X-Forwarded-For, по нему приложение считает лимит попыток входа.
+tracker.example.com {
+	encode gzip zstd
+	reverse_proxy 127.0.0.1:3000
+}

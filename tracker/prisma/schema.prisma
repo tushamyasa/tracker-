@@ -177,3 +177,15 @@ model BodyMeasurement {
 
   @@unique([userId, date])
 }
+
+/// Одноразовая ссылка для входа по email (режим AUTH_MODE=email). Хранится только хеш токена.
+model LoginToken {
+  id        String    @id @default(cuid())
+  email     String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([email])
+}

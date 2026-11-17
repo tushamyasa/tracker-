@@ -5,8 +5,10 @@ export async function middleware(req: NextRequest) {
   const userId = await verifyToken(req.cookies.get(SESSION_COOKIE)?.value);
   const { pathname } = req.nextUrl;
   const isLogin = pathname === "/login";
+  // Страница подтверждения входа по ссылке открывается без сессии.
+  const isPublic = isLogin || pathname === "/auth/verify";
 
-  if (!userId && !isLogin) {
+  if (!userId && !isPublic) {
     // API отвечает 401, а не HTML-страницей входа.
     if (pathname.startsWith("/api/")) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });

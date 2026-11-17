@@ -47,7 +47,19 @@
   "auth": {
     "email": "Email",
     "submit": "Sign in",
-    "hint": "Any email works, even a made-up one. No password needed."
+    "hint": "Any email works, even a made-up one. No password needed.",
+    "hintEmail": "We'll email you a sign-in link. No password needed.",
+    "submitEmail": "Get a link",
+    "sentTitle": "Check your email",
+    "sentText": "We sent a sign-in link to {email}. It is valid for 15 minutes.",
+    "sentSpam": "No email? Check your spam folder or request the link again.",
+    "again": "Use a different address",
+    "verifyTitle": "Confirm sign-in",
+    "verifyText": "Press the button to sign in to your account.",
+    "verifyButton": "Sign in",
+    "invalidTitle": "This link doesn't work",
+    "invalidText": "It is invalid, expired or already used. Request a new one.",
+    "backToLogin": "Back to sign in"
   },
   "errors": {
     "invalid_email": "Enter a valid email, e.g. you@example.com",
@@ -60,7 +72,9 @@
     "measurement_empty": "Fill in at least one metric",
     "future_measurement": "Measurement date can't be in the future",
     "out_of_range": "Value is out of the allowed range",
-    "rate_limited": "Too many sign-in attempts. Wait a minute and try again."
+    "rate_limited": "Too many sign-in attempts. Wait a minute and try again.",
+    "not_configured": "Email sign-in is not configured on the server. Contact the administrator.",
+    "mail_failed": "We couldn't send the email. Please try again later."
   },
   "onboarding": {
     "title": "Tell us about you",
