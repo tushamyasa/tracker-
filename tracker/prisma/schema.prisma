@@ -1,0 +1,179 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String             @id @default(cuid())
+  email          String             @unique
+  name           String?
+  goal           String?
+  experience     String?
+  weeklyGoal     Int                @default(3)
+  locale         String             @default("ru")
+  units          String             @default("kg")
+  theme          String             @default("system")
+  effectsEnabled Boolean            @default(true)
+  restDefaultSec Int                @default(90)
+  onboarded      Boolean            @default(false)
+  xp             Int                @default(0)
+  createdAt      DateTime           @default(now())
+  exercises      Exercise[]
+  favorites      FavoriteExercise[]
+  folders        Folder[]
+  templates      Template[]
+  workouts       Workout[]
+  achievements   UserAchievement[]
+  measurements   BodyMeasurement[]
+}
+
+model Exercise {
+  id            String             @id @default(cuid())
+  slug          String?            @unique // только у системных упражнений
+  ownerId       String? // null = системное
+  owner         User?              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  nameRu        String
+  nameEn        String
+  muscleGroup   String
+  equipment     String
+  kind          String             @default("weight_reps")
+  description   String?
+  mediaUrl      String?
+  createdAt     DateTime           @default(now())
+  favorites     FavoriteExercise[]
+  templateItems TemplateExercise[]
+  workoutItems  WorkoutExercise[]
+
+  @@index([ownerId])
+}
+
+model FavoriteExercise {
+  userId     String
+  exerciseId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@id([userId, exerciseId])
+}
+
+model Folder {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  createdAt DateTime   @default(now())
+  templates Template[]
+
+  @@index([userId])
+}
+
+model Template {
+  id        String             @id @default(cuid())
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  note      String?
+  weekday   Int? // 0 = понедельник … 6 = воскресенье
+  folderId  String?
+  folder    Folder?            @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  items     TemplateExercise[]
+
+  @@index([userId])
+}
+
+model TemplateExercise {
+  id         String   @id @default(cuid())
+  templateId String
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  order      Int
+  targetSets Int      @default(3)
+  targetReps Int      @default(10)
+
+  @@index([templateId])
+}
+
+model Workout {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  startedAt   DateTime          @default(now())
+  finishedAt  DateTime?
+  status      String            @default("active") // active | finished
+  note        String?
+  feeling     Int?
+  totalVolume Float             @default(0)
+  templateId  String?
+  exercises   WorkoutExercise[]
+
+  @@index([userId, startedAt])
+}
+
+model WorkoutExercise {
+  id         String     @id @default(cuid())
+  workoutId  String
+  workout    Workout    @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise   Exercise   @relation(fields: [exerciseId], references: [id])
+  order      Int
+  note       String?
+  sets       SetEntry[]
+
+  @@index([workoutId])
+  @@index([exerciseId])
+}
+
+model SetEntry {
+  id                String          @id @default(cuid())
+  workoutExerciseId String
+  workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
+  order             Int
+  type              String          @default("working") // working | warmup | failure
+  weightKg          Float           @default(0)
+  reps              Int             @default(0)
+  durationSec       Int             @default(0)
+  distanceKm        Float           @default(0)
+  done              Boolean         @default(false)
+  completedAt       DateTime?
+
+  @@index([workoutExerciseId])
+}
+
+model UserAchievement {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code       String
+  unlockedAt DateTime @default(now())
+  /// Тренировка, на которой открыто достижение (для показа на итоговом экране).
+  workoutId  String?
+
+  @@unique([userId, code])
+}
+
+model BodyMeasurement {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Дата замера (UTC, полночь).
+  date       DateTime
+  weightKg   Float?
+  bodyFatPct Float?
+  chestCm    Float?
+  waistCm    Float?
+  hipsCm     Float?
+  armCm      Float?
+  note       String?
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, date])
+}

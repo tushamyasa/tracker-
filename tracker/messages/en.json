@@ -1,0 +1,484 @@
+{
+  "app": {
+    "name": "Workout Tracker",
+    "tagline": "Log your sets. Beat your records."
+  },
+  "home": {
+    "title": "Home",
+    "start": "Start workout",
+    "greeting": "Hi, {name}!",
+    "todayTitle": "Planned for today",
+    "todayEmpty": "No workouts planned for today.",
+    "goTemplates": "Assign a template to a weekday",
+    "lastWorkout": "Last workout",
+    "noWorkouts": "No finished workouts yet",
+    "noMeasurements": "Add your first measurement",
+    "activity": "Activity"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "workouts": "Workouts",
+    "exercises": "Exercises",
+    "progress": "Progress",
+    "profile": "Profile",
+    "start": "Start workout"
+  },
+  "common": {
+    "soon": "Coming soon",
+    "soonText": "This section is under construction.",
+    "close": "Close",
+    "loading": "Loading…",
+    "skipToContent": "Skip to content",
+    "errorTitle": "Something went wrong",
+    "errorText": "We couldn't load this page. Please try again.",
+    "retry": "Try again",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "It may have been deleted or belong to another account.",
+    "toHome": "Go home"
+  },
+  "settings": {
+    "theme": "Theme",
+    "language": "Language",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Auto"
+  },
+  "auth": {
+    "email": "Email",
+    "submit": "Sign in",
+    "hint": "Any email works, even a made-up one. No password needed."
+  },
+  "errors": {
+    "invalid_email": "Enter a valid email, e.g. you@example.com",
+    "invalid": "Please check the fields",
+    "not_found": "Not found or no access",
+    "bad_image_type": "Only JPG, PNG or WebP images are allowed",
+    "image_too_big": "File is too large (2 MB max)",
+    "template_empty": "Add at least one exercise to the template",
+    "future_date": "Start date can't be in the future",
+    "measurement_empty": "Fill in at least one metric",
+    "future_measurement": "Measurement date can't be in the future",
+    "out_of_range": "Value is out of the allowed range",
+    "rate_limited": "Too many sign-in attempts. Wait a minute and try again."
+  },
+  "onboarding": {
+    "title": "Tell us about you",
+    "text": "This helps set up the app. You can change everything later in your profile.",
+    "submit": "Get started"
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "goal": "Goal",
+    "experience": "Experience",
+    "weeklyGoal": "Workouts per week",
+    "units": "Weight units",
+    "kg": "Kilograms",
+    "lb": "Pounds",
+    "rest": "Rest between sets, sec",
+    "effects": "Effects and confetti",
+    "save": "Save",
+    "saved": "Changes saved",
+    "signOut": "Sign out",
+    "delete": "Delete account",
+    "deleteTitle": "Delete account?",
+    "deleteText": "All your data will be permanently deleted.",
+    "deleteConfirm": "Yes, delete everything",
+    "cancel": "Cancel",
+    "goals": {
+      "strength": "Strength",
+      "mass": "Muscle mass",
+      "endurance": "Endurance",
+      "health": "Health"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "exportTitle": "Export data",
+    "exportText": "Download your data: a full JSON archive or CSV tables for Excel. Weights in kilograms, circumferences in centimeters.",
+    "exportJson": "All data (JSON)",
+    "exportCsvSets": "Sets (CSV)",
+    "exportCsvBody": "Body measurements (CSV)"
+  },
+  "exercises": {
+    "title": "Exercises",
+    "add": "Add",
+    "search": "Search exercises",
+    "all": "All",
+    "equipmentLabel": "Equipment",
+    "favoritesOnly": "★ Favorites",
+    "found": "Found: {count}",
+    "emptyTitle": "Nothing found",
+    "emptyText": "Change the search or filters, or add your own exercise.",
+    "custom": "Custom",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "newTitle": "New exercise",
+    "editTitle": "Edit exercise",
+    "create": "Create",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteTitle": "Delete exercise?",
+    "deleteText": "This exercise will be permanently deleted.",
+    "deleteConfirm": "Yes, delete",
+    "cancel": "Cancel",
+    "name": "Name",
+    "muscle": "Muscle group",
+    "kind": "Set type",
+    "description": "Technique description",
+    "photo": "Photo",
+    "photoHint": "JPG, PNG or WebP, up to 2 MB",
+    "removePhoto": "Remove current photo",
+    "technique": "Technique",
+    "noDescription": "No description yet.",
+    "progressTitle": "Progress",
+    "progressSoon": "Records and charts will appear after your first workouts.",
+    "muscles": {
+      "chest": "Chest",
+      "back": "Back",
+      "shoulders": "Shoulders",
+      "biceps": "Biceps",
+      "triceps": "Triceps",
+      "forearms": "Forearms",
+      "abs": "Abs",
+      "glutes": "Glutes",
+      "quads": "Quads",
+      "hamstrings": "Hamstrings",
+      "calves": "Calves",
+      "fullbody": "Full body",
+      "cardio": "Cardio"
+    },
+    "equipment": {
+      "barbell": "Barbell",
+      "dumbbell": "Dumbbell",
+      "machine": "Machine",
+      "cable": "Cable",
+      "bodyweight": "Bodyweight",
+      "kettlebell": "Kettlebell",
+      "band": "Band",
+      "other": "Other"
+    },
+    "kinds": {
+      "weight_reps": "Weight × reps",
+      "reps": "Reps only",
+      "time": "Time",
+      "weight_time": "Weight × time",
+      "distance_time": "Distance × time"
+    },
+    "inUse": "This exercise is in your workout history, so it can't be deleted.",
+    "openProgress": "Open progress chart"
+  },
+  "templates": {
+    "title": "Templates",
+    "hubText": "Your templates and ready-made programs",
+    "add": "Create",
+    "newTitle": "New template",
+    "editTitle": "Edit template",
+    "create": "Create template",
+    "save": "Save",
+    "delete": "Delete template",
+    "deleteTitle": "Delete template?",
+    "deleteText": "The template will be deleted. Logged workouts are not affected.",
+    "deleteConfirm": "Yes, delete",
+    "cancel": "Cancel",
+    "duplicate": "Duplicate",
+    "emptyTitle": "No templates yet",
+    "emptyText": "Create your own template or add a ready-made one below.",
+    "exerciseCount": "{count, plural, one {# exercise} other {# exercises}}",
+    "name": "Name",
+    "weekday": "Day of week",
+    "noWeekday": "Not assigned",
+    "folder": "Folder",
+    "noFolder": "No folder",
+    "note": "Note",
+    "exercisesTitle": "Exercises",
+    "noItems": "Empty so far. Add your first exercise.",
+    "addExercise": "Add exercise",
+    "pickTitle": "Pick an exercise",
+    "pickText": "Find an exercise in the catalog",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "removeItem": "Remove",
+    "sets": "Sets",
+    "reps": "Reps",
+    "newFolder": "New folder",
+    "createFolder": "Create folder",
+    "deleteFolder": "Delete folder",
+    "folderError": "Enter a folder name",
+    "emptyFolder": "No templates in this folder yet.",
+    "startersTitle": "Ready-made templates",
+    "startersText": "Add a template to your list and adjust it to your needs.",
+    "addStarter": "Add",
+    "weekdays": {
+      "0": "Monday",
+      "1": "Tuesday",
+      "2": "Wednesday",
+      "3": "Thursday",
+      "4": "Friday",
+      "5": "Saturday",
+      "6": "Sunday"
+    },
+    "start": "Start"
+  },
+  "workout": {
+    "startTitle": "Start a workout",
+    "startEmpty": "Empty workout",
+    "fromTemplate": "From a template",
+    "noTemplates": "No templates yet.",
+    "goTemplates": "Create a template",
+    "start": "Start",
+    "exerciseCount": "{count, plural, one {# exercise} other {# exercises}}",
+    "progressLine": "Done {done} of {total}",
+    "emptyWorkout": "Add your first exercise.",
+    "addExercise": "Add exercise",
+    "pickTitle": "Pick an exercise",
+    "pickText": "Find an exercise in the catalog",
+    "removeExercise": "Remove exercise",
+    "addSet": "Set",
+    "deleteSet": "Delete set",
+    "setType": "Set type",
+    "types": {
+      "working": "Working",
+      "warmup": "Warm-up",
+      "failure": "To failure"
+    },
+    "previous": "Previous",
+    "weight": "Weight",
+    "reps": "Reps",
+    "distance": "Distance, km",
+    "seconds": "Seconds",
+    "done": "Done",
+    "note": "Workout note",
+    "cancel": "Cancel workout",
+    "cancelTitle": "Cancel workout?",
+    "cancelText": "All logged sets will be deleted.",
+    "cancelConfirm": "Yes, cancel",
+    "continue": "Keep training",
+    "finish": "Finish",
+    "finishTitle": "Finish workout?",
+    "finishText": "Sets done: {done} of {total}. Volume: {volume}. Unfinished sets won't be saved.",
+    "finishConfirm": "Finish and save",
+    "feeling": "How do you feel? (1–5)",
+    "rest": "Rest",
+    "restOver": "Rest is over",
+    "restMinus": "Minus 15 seconds",
+    "restPlus": "Plus 15 seconds",
+    "restSkip": "Skip rest",
+    "saveError": "Couldn't save, check your connection",
+    "backToWorkouts": "Workouts",
+    "greatJob": "Great job! Workout saved.",
+    "duration": "Duration",
+    "volume": "Volume",
+    "sets": "Sets",
+    "exercisesCount": "Exercises",
+    "errors": {
+      "nothing_done": "Mark at least one set as done, or cancel the workout.",
+      "not_found": "Workout not found"
+    },
+    "record": "Record",
+    "recordTypes": {
+      "weight": "weight",
+      "e1rm": "1RM",
+      "volume": "set volume",
+      "reps": "reps",
+      "duration": "time",
+      "distance": "distance"
+    }
+  },
+  "history": {
+    "templates": "Templates",
+    "templatesText": "Your templates and ready-made programs",
+    "addPast": "Log past workout",
+    "activeBanner": "Workout in progress — go back to it",
+    "period": "Period",
+    "periods": {
+      "all": "All time",
+      "week": "7 days",
+      "month": "30 days",
+      "quarter": "3 months",
+      "year": "Year"
+    },
+    "exercise": "Exercise",
+    "anyExercise": "Any",
+    "found": "Workouts: {count}",
+    "emptyTitle": "No workouts yet",
+    "emptyText": "Finished workouts will show up here. Start your first one or log a past one.",
+    "nothingFound": "Nothing found",
+    "nothingFoundText": "Try changing the period or the exercise.",
+    "exerciseCount": "{count, plural, one {# exercise} other {# exercises}}",
+    "pagination": "Pages",
+    "prev": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {pages}",
+    "repeat": "Repeat",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteTitle": "Delete workout?",
+    "deleteText": "This workout will be permanently deleted.",
+    "deleteConfirm": "Yes, delete",
+    "cancel": "Cancel",
+    "newTitle": "Log a past workout",
+    "newText": "Add a workout you did earlier.",
+    "editTitle": "Edit workout",
+    "create": "Add workout",
+    "save": "Save",
+    "name": "Name",
+    "startedAt": "Started",
+    "durationMin": "Duration, min",
+    "exercises": "Exercises",
+    "noExercises": "Add at least one exercise."
+  },
+  "progress": {
+    "title": "Progress",
+    "emptyTitle": "Charts will appear here",
+    "emptyText": "Log your first workout and we'll build records, charts and an activity calendar.",
+    "startWorkout": "Start workout",
+    "exercise": "Exercise",
+    "metric": "Metric",
+    "metrics": {
+      "weight": "Weight",
+      "e1rm": "Estimated 1RM",
+      "volume": "Volume per workout",
+      "reps": "Reps",
+      "duration": "Time",
+      "distance": "Distance"
+    },
+    "recordNames": {
+      "weight": "Max weight",
+      "e1rm": "Estimated 1RM",
+      "volume": "Best set volume",
+      "reps": "Max reps",
+      "duration": "Max time",
+      "distance": "Max distance"
+    },
+    "recordsTitle": "Personal records",
+    "recordPoint": "Record",
+    "noDataPeriod": "No data for the selected period.",
+    "showTable": "Show as table",
+    "date": "Date",
+    "heatmapTitle": "Activity over 12 months",
+    "trainedDays": "{count, plural, one {# training day} other {# training days}}",
+    "muscleTitle": "Sets by muscle group",
+    "feedTitle": "Latest records",
+    "feedEmpty": "Records appear when you beat your previous results.",
+    "newRecords": "New records",
+    "bodyLink": "Body measurements"
+  },
+  "gamification": {
+    "weeklyGoal": "Weekly goal",
+    "goalDone": "Weekly goal complete!",
+    "goalLeft": "{count, plural, one {# workout to go} other {# workouts to go}}",
+    "streakDays": "{count, plural, one {Streak: # day} other {Streak: # days}}",
+    "longestStreak": "Best streak: {count}",
+    "level": "Level {level}",
+    "levelUp": "Level up! You are now level {level}.",
+    "xpGained": "+{xp} XP for this workout",
+    "xpRules": "Set +10 XP, workout +50 XP, record +100 XP.",
+    "openAchievements": "All achievements",
+    "achievementsTitle": "Achievements",
+    "unlockedCount": "Unlocked {done} of {total}",
+    "newAchievements": "New achievements",
+    "items": {
+      "first_workout": {
+        "name": "First step",
+        "desc": "Finish your first workout"
+      },
+      "workouts_10": {
+        "name": "Getting into it",
+        "desc": "10 workouts"
+      },
+      "workouts_50": {
+        "name": "Consistency",
+        "desc": "50 workouts"
+      },
+      "workouts_100": {
+        "name": "Centurion",
+        "desc": "100 workouts"
+      },
+      "streak_3": {
+        "name": "Warming up",
+        "desc": "A streak of 3 training days"
+      },
+      "streak_7": {
+        "name": "Week on fire",
+        "desc": "A streak of 7 training days"
+      },
+      "streak_30": {
+        "name": "Iron will",
+        "desc": "A streak of 30 training days"
+      },
+      "first_record": {
+        "name": "Personal record",
+        "desc": "Beat your previous result"
+      },
+      "records_10": {
+        "name": "Record breaker",
+        "desc": "10 record sets"
+      },
+      "volume_10t": {
+        "name": "Ten tons",
+        "desc": "Total volume of 10,000 kg"
+      },
+      "volume_100t": {
+        "name": "Hundred tons",
+        "desc": "Total volume of 100,000 kg"
+      },
+      "long_workout": {
+        "name": "Marathoner",
+        "desc": "A workout longer than 60 minutes"
+      },
+      "muscles_7_week": {
+        "name": "All-rounder",
+        "desc": "7 muscle groups in one week"
+      },
+      "custom_exercise": {
+        "name": "Author",
+        "desc": "Create your own exercise"
+      },
+      "weekly_goal": {
+        "name": "On target",
+        "desc": "Hit your weekly goal"
+      },
+      "level_5": {
+        "name": "Level 5",
+        "desc": "Reach level 5"
+      },
+      "level_10": {
+        "name": "Level 10",
+        "desc": "Reach level 10"
+      },
+      "first_measurement": {
+        "name": "Measured up",
+        "desc": "Add your first body measurement"
+      }
+    }
+  },
+  "body": {
+    "title": "Body measurements",
+    "addTitle": "New measurement",
+    "addText": "Fill in only what you measured. Entering the same date again updates that entry.",
+    "date": "Date",
+    "note": "Note",
+    "save": "Save measurement",
+    "saved": "Measurement saved",
+    "metric": "Metric",
+    "metrics": {
+      "weight": "Body weight",
+      "bodyFat": "Body fat",
+      "chest": "Chest",
+      "waist": "Waist",
+      "hips": "Hips",
+      "arm": "Arm"
+    },
+    "latest": "Latest values",
+    "empty": "No measurements yet. Add the first one to see a chart.",
+    "noData": "No data for this metric in the selected period.",
+    "showTable": "Show as table",
+    "history": "Measurement history",
+    "delete": "Delete measurement"
+  }
+}
