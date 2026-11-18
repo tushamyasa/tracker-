@@ -14,7 +14,8 @@
     "db:local": "node scripts/local-postgres.mjs",
     "db:setup": "prisma migrate deploy && npm run db:seed",
     "vercel-build": "prisma migrate deploy && next build",
-    "db:migrate": "prisma migrate dev"
+    "db:migrate": "prisma migrate dev",
+    "dev:local": "node scripts/dev-local.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

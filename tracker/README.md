@@ -14,11 +14,12 @@ Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4, Prisma 6 + Postgr
 
 ```bash
 npm install
-cp .env.example .env   # задайте SESSION_SECRET (не короче 16 символов)
-npm run db:local         # в отдельном окне терминала: локальный PostgreSQL, держите окно открытым
-npm run db:setup         # миграции и 112 стартовых упражнений (один раз)
-npm run dev              # http://localhost:3000
+npm run dev:local
 ```
+
+Дальше откройте http://localhost:3000. Команда `dev:local` делает всё сама: создаёт `.env` со случайным секретом, поднимает локальный PostgreSQL, применяет миграции, при первом запуске загружает 112 стартовых упражнений и запускает сервер. Остановить: Ctrl+C. Данные сохраняются в папке `.pglite` между запусками; чтобы начать с чистой базы, удалите эту папку.
+
+Вручную то же самое выглядит так: `npm run db:local` (в отдельном окне), затем `npm run db:setup` и `npm run dev`.
 
 Локальный PostgreSQL здесь — это PGlite, то есть настоящий PostgreSQL в WebAssembly: устанавливать ничего не нужно, данные лежат в папке `.pglite`. Если у вас уже есть свой PostgreSQL, пропустите `db:local` и укажите его адрес в `DATABASE_URL`.
 
@@ -28,7 +29,8 @@ npm run dev              # http://localhost:3000
 
 | Команда | Что делает |
 |---------|-----------|
-| `npm run dev` | dev-сервер |
+| `npm run dev:local` | всё для локального запуска одной командой (база, миграции, упражнения, сервер) |
+| `npm run dev` | только dev-сервер Next.js (нужна запущенная база) |
 | `npm run build` / `npm start` | production-сборка и запуск |
 | `npm run lint` | ESLint |
 | `npm test` | юнит-тесты (Vitest) |

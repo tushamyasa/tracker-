@@ -27,6 +27,7 @@ export async function startLocalPostgres({ memory = false, port = LOCAL_PG_PORT 
   return {
     dataDir,
     port,
+    db,
     async stop() {
       await server.stop();
       await db.close();
