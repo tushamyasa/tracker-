@@ -51,3 +51,4 @@ next-env.d.ts
 !.env.example
 /uploads
 /.e2e-outbox
+/.pglite

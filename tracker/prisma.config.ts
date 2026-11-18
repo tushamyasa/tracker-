@@ -12,6 +12,6 @@ export default defineConfig({
     // не обращается к базе, но требует, чтобы адрес был задан. На сборочных серверах вроде Vercel
     // DATABASE_URL при установке может отсутствовать, поэтому подставляем безвредное значение.
     // Миграции (`prisma migrate deploy`) используют настоящий адрес из окружения.
-    url: process.env.DATABASE_URL ?? "file:./dev.db",
+    url: process.env.DATABASE_URL ?? "postgresql://postgres:postgres@localhost:5432/postgres",
   },
 });

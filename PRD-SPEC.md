@@ -192,7 +192,7 @@
 | Стили | Tailwind CSS 4 + CSS-переменные из design.md |
 | Компоненты | Собственные на базе Radix UI примитивов (диалоги, табы, переключатели), иконки Lucide |
 | Графики | Recharts, календарь-теплокарта собственный компонент |
-| БД | SQLite + Prisma (для production легко заменить на PostgreSQL сменой провайдера) |
+| БД | PostgreSQL + Prisma (локально PGlite: настоящий PostgreSQL в WebAssembly) |
 | Авторизация | Собственная: email → upsert пользователя → подписанная сессия (JWT через `jose`, httpOnly cookie). Auth.js не нужен: нет паролей и OAuth |
 | Данные | Server Actions для мутаций, серверные компоненты для чтения, TanStack Query на экране активной тренировки |
 | Валидация | zod на клиенте и сервере |

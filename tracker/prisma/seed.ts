@@ -1,14 +1,8 @@
-import path from "node:path";
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { SEED_EXERCISES } from "./exercises-data";
 
-const raw = process.env.DATABASE_URL ?? "file:./dev.db";
-const url = raw.startsWith("file:")
-  ? "file:" + path.resolve(__dirname, raw.slice("file:".length))
-  : raw;
-
-const db = new PrismaClient({ datasourceUrl: url });
+const db = new PrismaClient();
 
 async function main() {
   for (const [slug, nameRu, nameEn, muscleGroup, equipment, kind] of SEED_EXERCISES) {

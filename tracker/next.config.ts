@@ -38,6 +38,11 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    // По умолчанию тело server action ограничено 1 МБ, а фото упражнения может весить до 2 МБ.
+    // На Vercel потолок для тела запроса к функции 4,5 МБ, так что запас остаётся.
+    serverActions: { bodySizeLimit: "3mb" },
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

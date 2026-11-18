@@ -149,3 +149,24 @@ test.describe("тема и язык сохраняются после перез
     await expect(page).toHaveURL(/\/login$/);
   });
 });
+
+test("фото больше 1 МБ загружается: лимит server action поднят до 3 МБ", async ({ page }) => {
+  await signUp(page);
+  // Допустимая по сигнатуре PNG-шапка и «тело» на 1,6 МБ: проверяем именно размер запроса.
+  const header = Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+    "base64",
+  );
+  const big = Buffer.concat([header, Buffer.alloc(1_600_000, 1)]);
+  await page.goto("/exercises/new");
+  await page.getByLabel("Название").fill("Большое фото");
+  await page
+    .getByLabel("Фото")
+    .setInputFiles({ name: "big.png", mimeType: "image/png", buffer: big });
+  await page.getByRole("button", { name: "Создать" }).click();
+  await expect(page.getByRole("heading", { name: "Большое фото" })).toBeVisible();
+  const src = await page.getByRole("img", { name: "Большое фото" }).getAttribute("src");
+  const res = await page.request.get(src!);
+  expect(res.status()).toBe(200);
+  expect((await res.body()).length).toBeGreaterThan(1_500_000);
+});

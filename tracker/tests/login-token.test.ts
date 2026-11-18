@@ -1,33 +1,11 @@
-import { execSync } from "node:child_process";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 
-/**
- * Интеграционный тест на отдельной временной SQLite-базе: реальные миграции, реальная Prisma.
- * Модуль токенов подключается после подмены DATABASE_URL, поэтому импортируется динамически.
- */
-let dir: string;
-let tokens: typeof import("@/server/auth/login-token");
-let db: typeof import("@/lib/db").db;
-
-beforeAll(async () => {
-  dir = await mkdtemp(path.join(os.tmpdir(), "tokens-"));
-  const url = "file:" + path.join(dir, "test.db").replace(/\\/g, "/");
-  process.env.DATABASE_URL = url;
-  execSync("npx prisma migrate deploy", {
-    cwd: process.cwd(),
-    env: { ...process.env, DATABASE_URL: url },
-    stdio: "pipe",
-  });
-  tokens = await import("@/server/auth/login-token");
-  db = (await import("@/lib/db")).db;
-});
+/** Интеграционный тест: реальная Prisma и PostgreSQL (PGlite) из globalSetup, реальные миграции. */
+import { db } from "@/lib/db";
+import * as tokens from "@/server/auth/login-token";
 
 afterAll(async () => {
-  await db?.$disconnect();
-  await rm(dir, { recursive: true, force: true });
+  await db.$disconnect();
 });
 
 describe("токены входа", () => {

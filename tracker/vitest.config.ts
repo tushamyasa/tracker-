@@ -9,5 +9,11 @@ export default defineConfig({
       "server-only": path.resolve(__dirname, "tests/stubs/server-only.ts"),
     },
   },
-  test: { include: ["tests/**/*.test.ts"], testTimeout: 30_000, hookTimeout: 60_000 },
+  test: {
+    include: ["tests/**/*.test.ts"],
+    // Поднимает временный PostgreSQL (PGlite) и применяет миграции; адрес кладёт в DATABASE_URL.
+    globalSetup: ["tests/global-setup.ts"],
+    testTimeout: 30_000,
+    hookTimeout: 120_000,
+  },
 });

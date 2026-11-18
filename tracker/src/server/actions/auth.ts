@@ -7,10 +7,10 @@ import { appUrl, authMode } from "@/lib/auth-config";
 import { db } from "@/lib/db";
 import { parseEmail } from "@/lib/email";
 import { buildLoginEmail } from "@/lib/login-email";
-import { rateLimit } from "@/lib/rate-limit";
 import { endSession, getCurrentUser, requireUser, startSession } from "@/server/auth/session";
 import { consumeLoginToken, createLoginToken } from "@/server/auth/login-token";
 import { sendMail } from "@/server/mail";
+import { rateLimit } from "@/server/rate-limit";
 import { deleteImage } from "@/server/media";
 
 export type FormState = { error?: string; sent?: string } | undefined;
@@ -46,7 +46,7 @@ export async function signIn(_: FormState, formData: FormData): Promise<FormStat
   }
   // Вход без пароля: ограничиваем частоту попыток с одного адреса.
   const limit = Number(process.env.AUTH_RATE_LIMIT) || 30;
-  if (!rateLimit(`signin:${ip}`, limit, 60_000).ok) return { error: "rate_limited" };
+  if (!(await rateLimit(`signin:${ip}`, limit, 60_000)).ok) return { error: "rate_limited" };
 
   return startUserSession(email);
 }
@@ -62,8 +62,10 @@ async function requestLoginLink(email: string, ip: string): Promise<FormState> {
   // Лимиты и по адресу, и по почте: нельзя ни заспамить чужой ящик, ни перебирать адреса.
   const ipLimit = Number(process.env.AUTH_LINK_IP_LIMIT) || 20;
   const emailLimit = Number(process.env.AUTH_LINK_EMAIL_LIMIT) || 5;
-  if (!rateLimit(`link-ip:${ip}`, ipLimit, LINK_WINDOW_MS).ok) return { error: "rate_limited" };
-  if (!rateLimit(`link-email:${email}`, emailLimit, LINK_WINDOW_MS).ok) {
+  if (!(await rateLimit(`link-ip:${ip}`, ipLimit, LINK_WINDOW_MS)).ok) {
+    return { error: "rate_limited" };
+  }
+  if (!(await rateLimit(`link-email:${email}`, emailLimit, LINK_WINDOW_MS)).ok) {
     return { error: "rate_limited" };
   }
 

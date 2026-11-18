@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Резервная копия базы и загруженных фото. Запускайте из cron, например раз в сутки:
+# Резервная копия базы PostgreSQL и загруженных фото. Запускайте из cron, например раз в сутки:
 #   0 3 * * * /opt/tracker/deploy/backup.sh >> /var/log/tracker-backup.log 2>&1
+# Нужны: pg_dump и переменная DATABASE_URL (например, из /etc/tracker.env).
 set -euo pipefail
 
-DATA_DIR="${DATA_DIR:-/var/lib/tracker}"      # где лежат app.db и uploads/
+: "${DATABASE_URL:?Задайте DATABASE_URL}"
+UPLOAD_DIR="${UPLOAD_DIR:-/var/lib/tracker/uploads}"
 BACKUP_DIR="${BACKUP_DIR:-/var/backups/tracker}"
 KEEP="${KEEP:-14}"                             # сколько копий хранить
 
@@ -12,10 +14,10 @@ mkdir -p "$BACKUP_DIR"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
-# .backup даёт согласованную копию даже при работающем приложении (в отличие от cp).
-sqlite3 "$DATA_DIR/app.db" ".backup '$work/app.db'"
-if [ -d "$DATA_DIR/uploads" ]; then
-  cp -r "$DATA_DIR/uploads" "$work/uploads"
+# Параметры вроде ?pgbouncer=true pg_dump не понимает, поэтому убираем строку запроса.
+pg_dump "${DATABASE_URL%%\?*}" -Fc -f "$work/db.dump"
+if [ -d "$UPLOAD_DIR" ]; then
+  cp -r "$UPLOAD_DIR" "$work/uploads"
 fi
 
 tar -czf "$BACKUP_DIR/tracker-$stamp.tar.gz" -C "$work" .

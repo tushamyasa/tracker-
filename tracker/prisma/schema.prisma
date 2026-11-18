@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider      = "prisma-client"
+  output        = "../src/generated/prisma"
+  // rhel-openssl-3.0.x — среда выполнения Vercel (AWS Lambda); native — ваша машина.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -188,4 +190,12 @@ model LoginToken {
   createdAt DateTime  @default(now())
 
   @@index([email])
+}
+
+/// Счётчики ограничения частоты (вход, запросы ссылок). Хранятся в базе, а не в памяти процесса:
+/// на serverless-платформах каждый запрос может обслуживать новый экземпляр приложения.
+model RateLimit {
+  key     String   @id
+  count   Int
+  resetAt DateTime
 }
